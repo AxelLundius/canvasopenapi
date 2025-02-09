@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: Canvas API
+  version: 1.0.0
+servers:
+  - url: https://canvas.instructure.com/api/v1
+paths:
+  /courses:
+    get:
+      summary: Get list of courses
+      description: Retrieve the courses that you are enrolled in.
+      responses:
+        '200':
+          description: A list of courses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+      security:
+        - BearerAuth: []
+  /courses/{course_id}/assignments:
+    get:
+      summary: Get assignments for a course
+      description: Retrieve assignments for a specific course.
+      parameters:
+        - in: path
+          name: course_id
+          required: true
+          schema:
+            type: integer
+          description: The ID of the course.
+      responses:
+        '200':
+          description: A list of assignments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+      security:
+        - BearerAuth: []
+  /courses/{course_id}/files:
+    get:
+      summary: Get files for a course
+      description: Retrieve files (such as lecture PowerPoints or instructions) for a specific course.
+      parameters:
+        - in: path
+          name: course_id
+          required: true
+          schema:
+            type: integer
+          description: The ID of the course.
+      responses:
+        '200':
+          description: A list of files
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+      security:
+        - BearerAuth: []
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
