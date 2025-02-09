@@ -3,7 +3,8 @@ info:
   title: Canvas API
   version: 1.0.0
 servers:
-  - url: https://canvas.instructure.com/api/v1
+  - url: "https://canvas.instructure.com/api/v1"
+    description: "Canvas API Base URL"
 paths:
   /courses:
     get:
